@@ -1,3 +1,4 @@
-# Made with [Threlte]('https://github.com/threlte/threlte')
+# Sveltekit + Threlte studies
 
-Sveltekit + Three.js studies.
+- [Sveltekit]('https://kit.svelte.dev/')
+- [Threlte]('https://github.com/threlte/threlte')
