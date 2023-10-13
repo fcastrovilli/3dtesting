@@ -32,7 +32,6 @@ Command: npx @threlte/gltf@2.0.0 /home/devit/Code/3dtesting/static/models/ramo_0
 
   const gltf = useGltf<GLTFResult>('/models/ramo_01_rotto_animaz.glb')
   export const { actions, mixer } = useGltfAnimations<ActionName>(gltf, ref)
-  $:console.log($actions,mixer)
   $:$actions.ArmaturaAction?.play()
   const component = forwardEventHandlers()
 </script>
