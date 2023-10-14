@@ -4,18 +4,19 @@
   import RamoPinkBump from '$lib/components/models/ramo_pink_bump.svelte'
   import BoccioloMetallic from '$lib/components/models/bocciolo_metallic.svelte';
 	import { onMount } from 'svelte';
-  let time = 0
-  //function to gradually change time value from -3 to 3 and back
+  let elevation = 2
+  let azimuth = 180
+  //function to gradually change elevation value from -5 to 90 and back
   const changeTime = () => {
     let interval = setInterval(() => {
-      if (time < 3) {
-        time += 0.001
+      if (elevation < 5) {
+        elevation += 0.001
       } else {
         clearInterval(interval)
         setTimeout(() => {
           let interval2 = setInterval(() => {
-            if (time > -3) {
-              time -= 0.001
+            if (elevation > -5) {
+              elevation -= 0.001
             } else {
               clearInterval(interval2)
               changeTime()
@@ -25,11 +26,32 @@
       }
     }, 10)
   }
+  //function to gradually change azimuth value from -180 to 180 and back
+  const changeAzimuth = () => {
+    let interval = setInterval(() => {
+      if (azimuth < 180) {
+        azimuth += 0.001
+      } else {
+        clearInterval(interval)
+        setTimeout(() => {
+          let interval2 = setInterval(() => {
+            if (azimuth > -180) {
+              azimuth -= 0.001
+            } else {
+              clearInterval(interval2)
+              changeAzimuth()
+            }
+          }, 10)
+        }, 1000)
+      }
+    }, 10)
+  }
   onMount(()=>{
     changeTime()
+    changeAzimuth()
   })
 </script>
-<Sky elevation={time} />
+<Sky {elevation} {azimuth}/>
 <T.PerspectiveCamera
   makeDefault
   position={[0, 0, 8]}
@@ -49,7 +71,7 @@
   />
 </T.PerspectiveCamera>
 
-<T.DirectionalLight intensity={1.5} position={[1, 5, -1]} castShadow/>
+<T.DirectionalLight intensity={1} position={[1, 5, -1]} castShadow/>
 
 <T.Group
   rotation={[1.8, 2, 0]}
@@ -59,6 +81,7 @@
     autoplay
     refDistance={15}
     loop
+    volume={0.8}
     directionalCone={{
       coneInnerAngle: 50,
       coneOuterAngle: 180,
@@ -83,6 +106,7 @@
       refDistance={15}
       loop
       src={'/audio/tree.mp3'}
+      volume={0.8}
       directionalCone={{
         coneInnerAngle: 90,
         coneOuterAngle: 220,
