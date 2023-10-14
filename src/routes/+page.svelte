@@ -1,9 +1,10 @@
 <script lang="ts">
   import App from '$lib/components/App.svelte'
+  let start:boolean = false
 </script>
 
 <div>
-  <App />
+  <App />  
 </div>
 
 <style>
