@@ -14,8 +14,6 @@ Command: npx @threlte/gltf@2.0.0 /home/devit/Code/3dtesting/static/models/ramo_p
   type $$Slots = Slots<THREE.Group> & { fallback: {}; error: { error: any } }
 
   export const ref = new Group()
-  export let castShadow: boolean = false
-  export let receiveShadow: boolean = false
 
   type GLTFResult = {
     nodes: {
@@ -25,10 +23,9 @@ Command: npx @threlte/gltf@2.0.0 /home/devit/Code/3dtesting/static/models/ramo_p
       ['Material.001']: THREE.MeshStandardMaterial
     }
   }
-
-  const gltf = useGltf<GLTFResult>('/models/ramo_pink_bump.glb',{
-    useDraco: true,
-  })
+  export let receiveShadow: boolean = false
+  export let castShadow: boolean = false
+  const gltf = useGltf<GLTFResult>('/models/ramo_pink_bump.glb',{useDraco:true})
 
   const component = forwardEventHandlers()
 </script>
@@ -41,8 +38,8 @@ Command: npx @threlte/gltf@2.0.0 /home/devit/Code/3dtesting/static/models/ramo_p
       geometry={gltf.nodes.Sfera003.geometry}
       material={gltf.materials['Material.001']}
       rotation={[Math.PI / 2, 0, 0]}
+      {receiveShadow} 
       {castShadow}
-      {receiveShadow}
     />
   {:catch error}
     <slot name="error" {error} />

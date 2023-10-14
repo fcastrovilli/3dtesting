@@ -14,7 +14,7 @@ Command: npx @threlte/gltf@2.0.0 /home/devit/Code/3dtesting/static/models/boccio
   type $$Slots = Slots<THREE.Group> & { fallback: {}; error: { error: any } }
 
   export const ref = new Group()
-  export let castShadow:boolean = false
+
   type GLTFResult = {
     nodes: {
       Cone: THREE.Mesh
@@ -25,10 +25,9 @@ Command: npx @threlte/gltf@2.0.0 /home/devit/Code/3dtesting/static/models/boccio
       Materiale: THREE.MeshStandardMaterial
     }
   }
-
-  const gltf = useGltf<GLTFResult>('/models/bocciolo_metallic.glb',{
-    useDraco: true
-  })
+  export let receiveShadow: boolean = false
+  export let castShadow: boolean = false
+  const gltf = useGltf<GLTFResult>('/models/bocciolo_metallic.glb',{useDraco:true})
 
   const component = forwardEventHandlers()
 </script>
@@ -37,8 +36,8 @@ Command: npx @threlte/gltf@2.0.0 /home/devit/Code/3dtesting/static/models/boccio
   {#await gltf}
     <slot name="fallback" />
   {:then gltf}
-    <T.Mesh geometry={gltf.nodes.Cone.geometry} material={gltf.materials['Materiale.001']} position={[0, 2, -0.8]} {castShadow}/>
-    <T.Mesh geometry={gltf.nodes.Sphere.geometry} material={gltf.materials.Materiale} {castShadow}/>
+    <T.Mesh geometry={gltf.nodes.Cone.geometry} material={gltf.materials['Materiale.001']} position={[0, 2, -0.8]} {receiveShadow} {castShadow} />
+    <T.Mesh geometry={gltf.nodes.Sphere.geometry} material={gltf.materials.Materiale} {receiveShadow} {castShadow}/>
   {:catch error}
     <slot name="error" {error} />
   {/await}

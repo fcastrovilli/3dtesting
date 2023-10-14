@@ -21,7 +21,7 @@ const configuration = {
   shadows: false,
   printwidth: 120,
   precision: 2,
-  draco: true,
+  draco: false,
   preload: false,
   suspense: false,
   isolated: false,
