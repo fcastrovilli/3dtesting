@@ -1,7 +1,7 @@
 <script lang="ts">
   import { T } from '@threlte/core'
   import { Float, OrbitControls } from '@threlte/extras'
-  import Ramo_01_rotto_animaz from '$lib/components/models/ramo_01_rotto_animaz.svelte'
+  import RamoPinkBump from '$lib/components/models/ramo_pink_bump.svelte'
   import BoccioloMetallic from '$lib/components/models/bocciolo_metallic.svelte';
 </script>
 
@@ -22,7 +22,7 @@
 
 <T.DirectionalLight intensity={1.5} position={[1, 5, -1]} castShadow/>
 
-<Ramo_01_rotto_animaz
+<RamoPinkBump
   receiveShadow
   scale={1}
   rotation={[1.8, 0, 0]}
