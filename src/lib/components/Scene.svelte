@@ -7,20 +7,20 @@
 
 <T.PerspectiveCamera
   makeDefault
-  position={[10, 0, 10]}
+  position={[8, 0, 8]}
   on:create={({ ref }) => {
-    ref.lookAt(0, 1, 0)
+    ref.lookAt(0, 10, 0)
   }}
 >
     <OrbitControls
-    enablePan={false}
+    enablePan={true}
     enableZoom={true}
     enableDamping
     
   />
 </T.PerspectiveCamera>
 
-<T.DirectionalLight intensity={1.5} position={[0, 5, -1]} castShadow/>
+<T.DirectionalLight intensity={1.5} position={[1, 5, -1]} castShadow/>
 
 <Ramo_01_rotto_animaz
   receiveShadow
